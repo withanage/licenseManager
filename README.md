@@ -1,6 +1,7 @@
 # licenseManager
  This is a  Web2py application to manage licenses and get the data as JSON through web2py's JSON API.
 ![screenshot from 2016-07-19 11 52 50](https://cloud.githubusercontent.com/assets/1921992/16945941/8c358a9a-4da7-11e6-8c21-c24490115911.png)
+ ![screenshot from 2016-07-19 12 03 05](https://cloud.githubusercontent.com/assets/1921992/16946243/cc9baf50-4da8-11e6-9de7-5741cb85e024.png)
  ![screenshot from 2016-07-19 11 53 42](https://cloud.githubusercontent.com/assets/1921992/16945979/b61c1590-4da7-11e6-9163-c3c567c473ad.png)
 
 ## Functionalities
