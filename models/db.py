@@ -59,6 +59,8 @@ response.generic_patterns = ['*'] if request.is_local else []
 response.formstyle = myconf.get('forms.formstyle')  # or 'bootstrap3_stacked' or 'bootstrap2' or other
 response.form_label_separator = myconf.get('forms.separator') or ''
 
+
+
 # -------------------------------------------------------------------------
 # (optional) optimize handling of static files
 # -------------------------------------------------------------------------
@@ -80,42 +82,10 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # (more options discussed in gluon/tools.py)
 # -------------------------------------------------------------------------
 
-from gluon.tools import Auth, Service, PluginManager
+
 
 # host names must be a list of allowed host names (glob syntax allowed)
-auth = Auth(db, host_names=myconf.get('host.names'))
-service = Service()
-plugins = PluginManager()
-
-# -------------------------------------------------------------------------
-# create all tables needed by auth if not custom tables
-# -------------------------------------------------------------------------
-auth.define_tables(username=False, signature=False)
-
-# -------------------------------------------------------------------------
-# configure email
-# -------------------------------------------------------------------------
-mail = auth.settings.mailer
-mail.settings.server = 'logging' if request.is_local else myconf.get('smtp.server')
-mail.settings.sender = myconf.get('smtp.sender')
-mail.settings.login = myconf.get('smtp.login')
-mail.settings.tls = myconf.get('smtp.tls') or False
-mail.settings.ssl = myconf.get('smtp.ssl') or False
-
-# -------------------------------------------------------------------------
-# configure auth policy
-# -------------------------------------------------------------------------
-auth.settings.registration_requires_verification = True
-auth.settings.registration_requires_approval = True
-auth.settings.reset_password_requires_verification = True
-
-# -------------------------------------------------------------------------
-# Define your tables below (or better in another model file) for example
-#
-# >>> db.define_table('mytable', Field('myfield', 'string'))
-#
-# Fields can be 'string','text','password','integer','double','boolean'
-#       'date','time','datetime','blob','upload', 'reference TABLENAME'
+#auth = Auth(db, host_names=myconf.get('host.names'))
 
 db.define_table('t_licenses',
     #Field('license_id', 'integer'),
@@ -123,8 +93,9 @@ db.define_table('t_licenses',
     Field('authority','string', requires=IS_IN_SET(['Creative Commons'])),
     Field('sharing','string',requires=IS_IN_SET(['Yes','No','Share under same condition'])),
     Field('commercial_use','string',requires=IS_IN_SET(['Yes','No'])),
-    Field('english_text','text'),
-    Field('english_url','string', requires=IS_NULL_OR(IS_URL())),
-    Field('german_text','text'),
-    Field('german_url','string', requires=IS_NULL_OR(IS_URL())),
+    Field('en_text','text'),
+    Field('en_url','string', requires=IS_NULL_OR(IS_URL())),
+    Field('de_text','text'),
+    Field('de_url','string', requires=IS_NULL_OR(IS_URL())),
+    Field('image','upload')
          )
