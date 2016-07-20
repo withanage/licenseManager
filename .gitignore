@@ -47,6 +47,7 @@ private/*
 errors/*
 private/
 errors/*
+progress.log
 *.swp
 
 # Eclipse project folders #
